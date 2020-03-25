@@ -1,5 +1,20 @@
+*{
+  box-sizing: border-box;
+}
+
 .btn--like{
   background: aqua;
   color: white;
 }
 
+#root{
+  margin: 25px;
+}
+button{
+  cursor: poiner;
+}
+#delete-btn{
+  display: flex;
+  margin-left: auto;
+  align-items: center;
+}
