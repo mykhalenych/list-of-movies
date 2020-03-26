@@ -1,7 +1,6 @@
 import React from 'react';
-import './App.css';
 import MovieItem from './MovieItem'
-import {API_URL, API_KEY_3, API_KEY_4} from './utils/api'
+import {API_URL, API_KEY_3} from './utils/api'
 import MovieTabs from './MovieTabs'
 
 class App extends React.Component{
@@ -11,11 +10,10 @@ class App extends React.Component{
       movies: [],
       moviesWillWatch: [],
       sort_by: "popularity.desc",
-      currentPage: 2010,    
+      currentPage: 2008,    
     }
   }
   componentDidMount(){
-    console.log("did mount")
     this.getMovies()
 
   }
@@ -24,15 +22,15 @@ class App extends React.Component{
       this.getMovies()
     }
     if(prevState.currentPage !== this.state.currentPage){
-      console.log(prevState.currentPage, this.state.currentPage)
       this.getNewPage()
     }
   }
   getNewPage(){
-    fetch(`${API_URL}/discover/movie?api_key=3f4ca4f3a9750da53450646ced312397&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=100&year=${this.state.currentPage}`)
+    fetch(`${API_URL}/discover/movie?api_key=3f4ca4f3a9750da53450646ced312397&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=50&year=${this.state.currentPage}`)
     .then((response) => {
       return response.json()
-    }).then((data) => {
+    })
+    .then((data) => {
       this.setState({
         movies: data.results
       })
@@ -41,7 +39,8 @@ class App extends React.Component{
   getMovies(){
     fetch(`${API_URL}/discover/movie?api_key=${API_KEY_3}&sort_by=${this.state.sort_by}`).then((response) => {
       return response.json()
-      }).then((data) =>{
+      })
+      .then((data) =>{
         this.setState({
           movies: data.results
         })
@@ -65,7 +64,6 @@ class App extends React.Component{
   }
   addMoveToWillWatch = (movie) => {
     const updateMoviesToWatch = [...this.state.moviesWillWatch]
-    console.log(updateMoviesToWatch)
     updateMoviesToWatch.push(movie)
 
     this.setState({
@@ -77,7 +75,6 @@ class App extends React.Component{
     const updateMovies = this.state.movies.filter(function(item){
       return item.id !== movie.id
     })
-    console.log(updateMovies  )
     this.setState({
       movies: updateMovies
     })
