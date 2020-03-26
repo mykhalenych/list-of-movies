@@ -30,9 +30,9 @@ class MovieTabs extends React.Component{
       </li>
       <li className="nav-item active">
         <div 
-          onClick={handleClick("vote_avarage.desc")}         
-          className={getClassLink("vote_average.desc")}>
-          Vote avarage
+          onClick={handleClick("vote_count.desc")}         
+          className={getClassLink("vote_count.desc")}>
+          Vote count
         </div>
       </li>
         <button 
